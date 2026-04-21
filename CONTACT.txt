@@ -1,0 +1,6 @@
+Full Name: [Your Full Name]
+Email: [your@email.com]
+Phone: [+91 XXXXXXXXXX]
+GitHub: https://github.com/[your-username]
+
+Most challenging part: Designing the role-based middleware to correctly scope every API response — especially making sure institution-level users only see their own batches and trainer/student associations without leaking cross-institution data.
