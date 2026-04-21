@@ -2,16 +2,31 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const serverless = require("serverless-http");
+// NEW
 
 dotenv.config();
 
 const app = express();
 
-// Middleware
+
+// CORS
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://main.d21q41489vwpur.amplifyapp.com"
+];
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
 }));
+
 app.use(express.json());
 
 // Routes
@@ -40,9 +55,28 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("✅ MongoDB connected");
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+    // app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
   })
   .catch((err) => {
     console.error("❌ MongoDB connection error:", err.message);
     process.exit(1);
   });
+// --------------------
+// Lambda handler
+// --------------------
+module.exports.handler = serverless(app, {
+  request: (req, event, context) => {
+    if (Buffer.isBuffer(req.body)) {
+      try {
+        const str = req.body.toString();
+        // Only parse if it starts with { or [
+        if (str.trim().startsWith('{') || str.trim().startsWith('[')) {
+          req.body = JSON.parse(str);
+        }
+      } catch (err) {
+        console.error("❌ Failed to parse request body:", err.message);
+        req.body = {}; // fallback to avoid crashing
+      }
+    }
+  }
+});
