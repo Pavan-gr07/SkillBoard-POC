@@ -8,9 +8,9 @@ A full-stack MERN attendance management system for a state-level skilling progra
 
 | Service  | URL                              |
 |----------|----------------------------------|
-| Frontend | `https://skillbridge-ui.vercel.app` _(update after deploy)_ |
-| Backend  | `https://skillbridge-api.railway.app` _(update after deploy)_ |
-| API Base | `https://skillbridge-api.railway.app/api` |
+| Frontend | `https://main.d21q41489vwpur.amplifyapp.com/` _(Deployed In AWS Amplify)|
+| Backend  | `https://kylzor0qo9.execute-api.ap-south-1.amazonaws.com/dev/` _(Deployed In AWS Lamda)_ |
+| API Base | `https://kylzor0qo9.execute-api.ap-south-1.amazonaws.com/dev/api` |
 
 ---
 
@@ -40,13 +40,13 @@ Create these accounts via the `/signup` page after deploying (or use the seed sc
 ### 1. Clone and install
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Pavan-gr07/SkillBoard-POC.git
 cd skillbridge
 
 # Backend
 cd backend
 npm install
-cp .env.example .env
+cp .env
 # Edit .env: set MONGO_URI and JWT_SECRET
 
 # Frontend
@@ -83,8 +83,8 @@ After creating test accounts via the UI, note the Institution ID shown in the Mo
 | Database  | MongoDB Atlas| Schema-flexible, generous free tier, hosted |
 | Auth      | JWT (custom) | No third-party dependency, full control, works anywhere |
 | Styling   | Plain CSS    | No build-time overhead, full control, faster iteration |
-| Deploy FE | Vercel       | Zero-config Vite deploys, free tier |
-| Deploy BE | Railway      | Simple Node.js hosting, free tier, env var management |
+| Deploy FE | AWS Amplify  | Zero-config Vite deploys, free tier |
+| Deploy BE | AWS Lamda    | Simple Node.js hosting, free tier, env var management,Serverless |
 
 **Why not Clerk?** Chose custom JWT to avoid vendor lock-in and keep the backend self-contained. The tradeoff is we manage password hashing (bcryptjs) and token refresh ourselves — acceptable for a prototype.
 
@@ -143,21 +143,21 @@ Add **optimistic UI updates** throughout. Currently every mutation (mark attenda
 
 ## Deployment Guide
 
-### Backend on Railway
+### Backend on Lamda
 1. Push `backend/` to a GitHub repo
 2. New project → Deploy from GitHub → select repo
 3. Add env vars: `MONGO_URI`, `JWT_SECRET`, `FRONTEND_URL`, `PORT=5000`
-4. Railway auto-detects Node.js and runs `npm start`
+4. Lamda using .yml commands `serverless deploy`
 
-### Frontend on Vercel
+### Frontend on Amplify
 1. Push `frontend/` to a GitHub repo  
-2. Import project on Vercel → set framework to Vite
-3. Add env var: `VITE_API_URL=https://your-railway-url/api`
+2. Import project on Aws Amplify 
+3. Add env var: `VITE_API_URL=https://kylzor0qo9.execute-api.ap-south-1.amazonaws.com/dev/api`
 4. Deploy
 
 ### MongoDB Atlas
 1. Create free M0 cluster
-2. Create DB user, whitelist `0.0.0.0/0` for Railway's dynamic IPs
+2. Create DB user, whitelist `0.0.0.0/0` for AWS's dynamic IPs
 3. Copy connection string to `MONGO_URI` env var
 
 ---

@@ -108,7 +108,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-ap-south-1-1b5b1ab4-e790",
-                "S3Key": "serverless/lerna-backend/dev/1776767171715-2026-04-21T10:26:11.715Z/lerna-backend.zip"
+                "S3Key": "serverless/lerna-backend/dev/1776834535590-2026-04-22T05:08:55.590Z/lerna-backend.zip"
               },
               "Handler": "server.handler",
               "Runtime": "nodejs18.x",
@@ -131,14 +131,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersion2JGxEQHSouukUzA4r7jNbkMnJZ1Yvg6D1dcnhWjlg0Y": {
+          "AppLambdaVersion6I3Jl3tANy2XC5xJxrwGxz5f8bYdJd9VE3SW7bTH5cY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "y6N4MsPbN78UE3Hreogrce28DS1lhRiPG00dL9K5b5k="
+              "CodeSha256": "6aFa6hC8Yjbz1ps3pJJ63//+lBPKFFGQrLobnhwrVSs="
             }
           },
           "ApiGatewayRestApi": {
@@ -356,7 +356,7 @@
               "AppLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1776767160897": {
+          "ApiGatewayDeployment1776834526091": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -419,7 +419,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersion2JGxEQHSouukUzA4r7jNbkMnJZ1Yvg6D1dcnhWjlg0Y"
+              "Ref": "AppLambdaVersion6I3Jl3tANy2XC5xJxrwGxz5f8bYdJd9VE3SW7bTH5cY"
             },
             "Export": {
               "Name": "sls-lerna-backend-dev-AppLambdaFunctionQualifiedArn"
@@ -511,7 +511,7 @@
         "timeout": 30,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersion2JGxEQHSouukUzA4r7jNbkMnJZ1Yvg6D1dcnhWjlg0Y"
+        "versionLogicalId": "AppLambdaVersion6I3Jl3tANy2XC5xJxrwGxz5f8bYdJd9VE3SW7bTH5cY"
       }
     },
     "configValidationMode": "warn",
@@ -528,10 +528,10 @@
     "appId": null,
     "orgId": null,
     "layers": {},
-    "artifact": "C:\\Users\\pavan\\Downloads\\skillbridge-mern-v2\\skillbridgev2\\backend\\.serverless\\lerna-backend.zip"
+    "artifact": "C:\\Users\\pavan\\Documents\\GitHub\\skillbridge\\backend\\.serverless\\lerna-backend.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/lerna-backend/dev/1776767171715-2026-04-21T10:26:11.715Z",
+    "artifactDirectoryName": "serverless/lerna-backend/dev/1776834535590-2026-04-22T05:08:55.590Z",
     "artifact": "lerna-backend.zip"
   }
 }
